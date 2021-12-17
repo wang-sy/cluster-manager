@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluster-manager
+  namespace: cluster-manager
+  labels:
+    type: backend-service
+    name: cluster-manager
+spec:
+  selector:
+    matchLabels:
+      type: backend-service
+      name: cluster-manager
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        type: backend-service
+        name: cluster-manager
+    spec:
+      containers:
+      - name: cluster-manager
+        image: pcgvphonebackend/cluster-manager:1.2
